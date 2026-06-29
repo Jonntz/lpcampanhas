@@ -53,17 +53,54 @@ export const Route = createFileRoute("/")({
 
 // ---------------- Form ----------------
 
+// 👇 Cole aqui a URL do seu Google Apps Script (Web App) depois de publicá-lo.
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbza1l6D86cp83vtFp6-cNLQ-R7curNXp0DlxeGvJNzkcQH9Bpf4IENR8Y_X2r1TlbzH3w/exec";
+
+const WHATSAPP_NUMBER = "5531997844960";
+
 type FormData = { nome: string; whatsapp: string; cidade: string };
 
 function useInscricaoForm() {
   const [data, setData] = useState<FormData>({ nome: "", whatsapp: "", cidade: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+
+    // 1. Salvar no localStorage (backup local)
     const stored = JSON.parse(localStorage.getItem("inscricoes") ?? "[]");
     stored.push({ ...data, at: new Date().toISOString() });
     localStorage.setItem("inscricoes", JSON.stringify(stored));
+
+    // 2. Enviar para o Google Sheets (em background, sem bloquear o fluxo)
+    try {
+      await fetch(SHEETS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: data.nome,
+          whatsapp: data.whatsapp,
+          cidade: data.cidade,
+          data: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+        }),
+      });
+    } catch {
+      // Silenciosamente ignora erro de rede — o dado já está no localStorage
+    }
+
+    // 3. Abrir o WhatsApp com mensagem pré-preenchida
+    const msg = encodeURIComponent(
+      `🟢 *Nova inscrição — Lançamento Biancardine*\n\n` +
+      `👤 *Nome:* ${data.nome}\n` +
+      `📱 *WhatsApp:* ${data.whatsapp}\n` +
+      `📍 *Cidade:* ${data.cidade}`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+
+    setLoading(false);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -71,11 +108,11 @@ function useInscricaoForm() {
     }, 6000);
   };
 
-  return { data, setData, submitted, handleSubmit };
+  return { data, setData, submitted, loading, handleSubmit };
 }
 
 function InscricaoForm({ idPrefix = "f1", compact = false }: { idPrefix?: string; compact?: boolean }) {
-  const { data, setData, submitted, handleSubmit } = useInscricaoForm();
+  const { data, setData, submitted, loading, handleSubmit } = useInscricaoForm();
 
   if (submitted) {
     return (
@@ -103,6 +140,7 @@ function InscricaoForm({ idPrefix = "f1", compact = false }: { idPrefix?: string
         maxLength={120}
         onChange={(e) => setData({ ...data, nome: e.target.value })}
         className={inputClass}
+        disabled={loading}
       />
       <input
         required
@@ -113,6 +151,7 @@ function InscricaoForm({ idPrefix = "f1", compact = false }: { idPrefix?: string
         maxLength={20}
         onChange={(e) => setData({ ...data, whatsapp: e.target.value })}
         className={inputClass}
+        disabled={loading}
       />
       <input
         required
@@ -123,10 +162,12 @@ function InscricaoForm({ idPrefix = "f1", compact = false }: { idPrefix?: string
         maxLength={80}
         onChange={(e) => setData({ ...data, cidade: e.target.value })}
         className={inputClass}
+        disabled={loading}
       />
       <button
         type="submit"
-        className="group relative w-full overflow-hidden rounded-xl bg-brand-green px-6 py-4 text-base font-black uppercase tracking-wide text-brand-deep shadow-green-glow transition-all hover:bg-brand-green-hover hover:text-white active:scale-[0.99]"
+        disabled={loading}
+        className="group relative w-full overflow-hidden rounded-xl bg-brand-green px-6 py-4 text-base font-black uppercase tracking-wide text-brand-deep shadow-green-glow transition-all hover:bg-brand-green-hover hover:text-white active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
       >
         <span className="relative z-10 flex items-center justify-center gap-2">
           Quero participar
