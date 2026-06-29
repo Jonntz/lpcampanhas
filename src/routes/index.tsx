@@ -16,6 +16,8 @@ import {
   Home,
   Handshake,
   Vote,
+  Landmark,
+  MessageCircle,
 } from "lucide-react";
 
 import speakingPhoto from "@/assets/speaking.jpeg";
@@ -644,30 +646,65 @@ function CtaFinal() {
 
 function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-brand-deep py-12 text-white">
+    <footer className="relative overflow-hidden bg-brand-deep pb-8 pt-12 text-white">
       <div className="absolute inset-x-0 top-0 h-1 bg-brand-green" aria-hidden />
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 text-center sm:px-6 lg:flex-row lg:justify-between lg:text-left lg:px-8">
-        <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-lg bg-brand-green font-display text-lg font-black text-brand-deep">
-            M
-          </span>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Top Section */}
+        <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:justify-between lg:text-left">
           <div>
-            <p className="font-display text-lg font-bold">Matheus Biancardine</p>
-            <p className="text-xs text-white/60">Pré-candidato a Deputado Federal · MG</p>
+            <p className="font-display text-xl font-bold text-white">Matheus Biancardine Mota</p>
+            <p className="mt-1 text-sm text-white/60">Pré-candidato a Deputado Federal · MG</p>
+          </div>
+
+          <p className="max-w-md font-display text-base italic text-white/85">
+            "Por uma Minas mais livre, próspera e cheia de oportunidades."
+          </p>
+
+          <div className="flex flex-col items-center gap-3 sm:flex-row">
+            <a
+              href="https://instagram.com/matheus.biancardinemg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold ring-1 ring-white/20 transition hover:bg-white/20"
+            >
+              <Instagram className="h-4 w-4" />
+              @matheus.biancardinemg
+            </a>
+            <a
+              href="https://wa.me/5531983626852"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold ring-1 ring-white/20 transition hover:bg-white/20"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
           </div>
         </div>
-        <p className="max-w-md font-display text-base italic text-white/85">
-          "Por uma Minas mais livre, próspera e cheia de oportunidades."
-        </p>
-        <a
-          href="https://instagram.com/matheus.biancardinemg"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold ring-1 ring-white/20 transition hover:bg-white/20"
-        >
-          <Instagram className="h-4 w-4" />
-          @matheus.biancardinemg
-        </a>
+
+        <hr className="my-10 border-white/10" />
+
+        {/* Legal Info */}
+        <div className="flex flex-col gap-6 text-xs text-white/60 sm:text-sm">
+          <div className="flex items-start gap-4">
+            <Landmark className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
+            <p className="leading-relaxed">
+              <strong className="font-bold text-white uppercase">Informação Político-Institucional</strong> · Conteúdo informativo de pré-campanha eleitoral de <strong className="font-bold text-white">Matheus Biancardine Mota</strong>, pré-candidato a Deputado Federal pelo estado de Minas Gerais, em estrita conformidade com o <strong className="font-bold text-white">Artigo 36-A da Lei nº 9.504/1997</strong>. Este material não configura propaganda eleitoral antecipada, sendo vedado qualquer pedido explícito de voto.
+            </p>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <Shield className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
+            <p className="leading-relaxed">
+              <strong className="font-bold text-white uppercase">Privacidade e Dados (LGPD)</strong> · Ao fornecer seu nome e contato, você autoriza o recebimento de informações exclusivas sobre o evento de lançamento, prestação de contas, ideias e agendas do pré-candidato. Seus dados estão protegidos e não serão compartilhados com terceiros. Conteúdo produzido sob responsabilidade do titular.
+            </p>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="mt-16 text-center text-xs text-white/40">
+          <p>© 2026 Matheus Biancardine Mota · Todos os direitos reservados.</p>
+        </div>
       </div>
     </footer>
   );
