@@ -384,7 +384,7 @@ function Quem() {
 
 function Autoridade() {
   const photos = [
-    { src: zemaPhoto, label: "Ao lado do Governador Romeu Zema", tag: "Governo de Minas" },
+    { src: zemaPhoto, label: "Ao lado do Governador Matheus Simões", tag: "Governo de Minas" },
     { src: camaraPhoto, label: "Atuação institucional na Assembleia", tag: "Vida pública", objectPosition: "object-top" },
     { src: speakingPhoto, label: "Palestrando para lideranças", tag: "Liderança" },
     {
@@ -413,7 +413,7 @@ function Autoridade() {
               <img
                 src={photos[0].src}
                 alt={photos[0].label}
-                className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-96 lg:h-full"
+                className="h-72 w-full object-cover object-top transition duration-500 group-hover:scale-105 sm:h-96 lg:h-full"
                 loading="lazy"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-deep/95 via-brand-deep/40 to-transparent p-5">
@@ -671,7 +671,7 @@ function Footer() {
               @matheus.biancardinemg
             </a>
             <a
-              href="https://wa.me/5531983626852"
+              href="https://wa.me/5531985931115"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold ring-1 ring-white/20 transition hover:bg-white/20"
