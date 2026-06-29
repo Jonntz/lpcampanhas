@@ -1,0 +1,124 @@
+@import "tailwindcss" source(none);
+@source "../";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-soft: var(--brand-teal-soft);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-hover: var(--brand-green-hover);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand palette (user-defined) */
+  --brand-deep: #012E40;          /* primary background */
+  --brand-teal: #03738C;          /* alternate sections */
+  --brand-teal-soft: #024959;     /* mid tone */
+  --brand-green: #29EA28;         /* CTA / highlight */
+  --brand-green-hover: #11A837;   /* CTA hover */
+
+  --background: var(--brand-deep);
+  --foreground: #FFFFFF;
+  --card: var(--brand-teal-soft);
+  --card-foreground: #FFFFFF;
+  --popover: var(--brand-teal-soft);
+  --popover-foreground: #FFFFFF;
+  --primary: var(--brand-green);
+  --primary-foreground: var(--brand-deep);
+  --secondary: var(--brand-teal);
+  --secondary-foreground: #FFFFFF;
+  --muted: var(--brand-teal-soft);
+  --muted-foreground: rgba(255,255,255,0.72);
+  --accent: var(--brand-green);
+  --accent-foreground: var(--brand-deep);
+  --destructive: oklch(0.58 0.24 27);
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(255,255,255,0.12);
+  --input: rgba(255,255,255,0.16);
+  --ring: var(--brand-green);
+
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --gradient-deep: linear-gradient(160deg, #012E40 0%, #024959 60%, #03738C 100%);
+  --gradient-green: linear-gradient(135deg, #29EA28 0%, #11A837 100%);
+  --shadow-elegant: 0 30px 60px -20px rgba(0,0,0,0.55);
+  --shadow-green: 0 18px 40px -12px rgba(41,234,40,0.45);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility bg-deep-gradient {
+  background-image: var(--gradient-deep);
+}
+@utility bg-green-gradient {
+  background-image: var(--gradient-green);
+}
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+@utility shadow-green-glow {
+  box-shadow: var(--shadow-green);
+}
+
+@utility bg-brand-pattern {
+  background-image:
+    radial-gradient(1200px 600px at 90% -10%, rgba(41,234,40,0.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(3,115,140,0.55), transparent 60%),
+    linear-gradient(160deg, #012E40 0%, #02394F 100%);
+}
+
+@utility bg-grid-soft {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
