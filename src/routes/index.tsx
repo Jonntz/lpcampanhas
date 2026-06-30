@@ -18,6 +18,7 @@ import {
   Vote,
   Landmark,
   MessageCircle,
+  Clock
 } from "lucide-react";
 
 import speakingPhoto from "@/assets/speaking.jpeg";
@@ -598,36 +599,51 @@ function Evento() {
     <section className="relative overflow-hidden bg-brand-deep py-20 lg:py-28">
       <div className="absolute inset-0 bg-grid-soft opacity-20" aria-hidden />
       <div className="absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-brand-green/15 blur-3xl" aria-hidden />
+
       <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-brand-green/40 bg-brand-green/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-brand-green backdrop-blur">
           <Calendar className="h-3.5 w-3.5" />
           Evento oficial
         </div>
+
         <h2 className="mt-6 font-display text-4xl font-black text-white sm:text-5xl lg:text-6xl">
           Lançamento da Pré-Candidatura
         </h2>
-        <div className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
-            <Calendar className="mx-auto h-6 w-6 text-brand-green" />
-            <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-white/60">Data</p>
-            <p className="mt-1 font-display text-lg font-black text-white">25 de julho de 2026</p>
+        <p className="mt-4 text-lg font-medium text-brand-green">
+          Matheus Biancardine - Pré-candidato a Deputado Federal
+        </p>
+
+        <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Card Data */}
+          <div className="flex flex-col items-center justify-center rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10 transition-colors hover:bg-white/10">
+            <Calendar className="mb-3 h-7 w-7 text-brand-green" />
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Data</p>
+            <p className="mt-1 font-display text-lg font-black text-white">25 de Julho, 2026</p>
           </div>
-          <div className="rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
-            <MapPin className="mx-auto h-6 w-6 text-brand-green" />
-            <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-white/60">Local</p>
-            <p className="mt-1 font-display text-lg font-black text-white">Minas Gerais</p>
-            <p className="text-xs text-white/60">Local enviado pelo WhatsApp</p>
+
+          {/* Card Horário */}
+          <div className="flex flex-col items-center justify-center rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10 transition-colors hover:bg-white/10">
+            <Clock className="mb-3 h-7 w-7 text-brand-green" />
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Horário</p>
+            <p className="mt-1 font-display text-lg font-black text-white">15h30</p>
+            <p className="text-xs text-white/60">Início</p>
           </div>
-          <div className="rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
-            <Users className="mx-auto h-6 w-6 text-brand-green" />
-            <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-white/60">Vagas</p>
-            <p className="mt-1 font-display text-lg font-black text-white">Limitadas</p>
-            <p className="text-xs text-white/60">Por ordem de inscrição</p>
+
+          {/* Card Local e Endereço */}
+          <div className="flex flex-col items-center justify-center rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10 transition-colors hover:bg-white/10 sm:col-span-2 lg:col-span-2">
+            <MapPin className="mb-3 h-7 w-7 text-brand-green" />
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Local</p>
+            <p className="mt-1 font-display text-lg font-black text-white">(Antigo) Cine Odeon</p>
+            <p className="mt-2 text-sm leading-relaxed text-white/70">
+              Av. do Contorno, 1328 - Floresta<br />
+              Belo Horizonte - MG, 38082-049
+            </p>
           </div>
         </div>
+
         <a
           href="#cta-final"
-          className="mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-green px-8 py-4 text-base font-black uppercase tracking-wide text-brand-deep transition hover:bg-brand-green-hover hover:text-white"
+          className="mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-green px-8 py-4 text-base font-black uppercase tracking-wide text-brand-deep shadow-green-glow transition hover:bg-brand-green-hover hover:text-white"
         >
           Confirmar presença
           <ArrowRight className="h-5 w-5" />
