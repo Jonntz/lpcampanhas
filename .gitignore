@@ -1,1 +1,5 @@
 node_modules
+.tanstack
+.vercel
+.env
+dist

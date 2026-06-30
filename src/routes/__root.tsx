@@ -109,19 +109,24 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXEBVJVR0M" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-JXEBVJVR0M"
+          crossOrigin="anonymous"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-JXEBVJVR0M');
+              gtag('config', 'G-JXEBVJVR0M', { 'page_title': document.title, 'page_location': window.location.href, 'page_path': window.location.pathname });
             `,
           }}
         />
       </head>
       <body>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M498JLMC" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
         {children}
         <Scripts />
       </body>
