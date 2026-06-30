@@ -425,14 +425,16 @@ function Quem() {
 // ---------------- Autoridade (fotos) ----------------
 
 function Autoridade() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const photos = [
-    { src: zemaPhoto, label: "Ao lado do Governador Matheus Simões", tag: "Governo de Minas" },
-    { src: camaraPhoto, label: "Atuação institucional na Assembleia", tag: "Vida pública", objectPosition: "object-top" },
-    { src: speakingPhoto, label: "Palestrando para lideranças", tag: "Liderança" },
+    { src: zemaPhoto, label: "Coragem e fé! Trabalhando pela juventude mineira, com a liderança de Romeu Zema e Mateus Simões, mobilizando, atuando no Governo, e liderando movimentos jovens!", tag: "Governo de Minas" },
+    { src: camaraPhoto, label: "Fundador da Juventude do Partido Novo e ex presidente nacional!", tag: "Vida pública", objectPosition: "object-top" },
+    { src: speakingPhoto, label: "Líder Renova BR 2026!", tag: "Liderança" },
     {
       src: audienciaPhoto,
       label:
-        "Audiência pública para discutir políticas para a juventude — Trilhas do Futuro, Futuro no Campo, Minas Urbano e Play Minas",
+        "Gestor de políticas públicas para juventude mineira",
       tag: "Audiência Pública",
     },
   ];
@@ -462,7 +464,14 @@ function Autoridade() {
                 <span className="inline-block rounded-full bg-brand-green px-3 py-1 text-[10px] font-black uppercase tracking-wider text-brand-deep">
                   {photos[0].tag}
                 </span>
-                <p className="mt-2 font-display text-lg font-bold text-white sm:text-xl">{photos[0].label}</p>
+                <p
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className={`mt-2 font-display text-lg font-bold text-white sm:text-xl cursor-pointer transition-all duration-300 ${isExpanded ? "" : "line-clamp-2"
+                    }`}
+                  title={isExpanded ? "Clique para esconder" : "Clique para ler mais"}
+                >
+                  {photos[0].label}
+                </p>
               </div>
             </div>
           </div>
@@ -771,12 +780,12 @@ function LandingPage() {
   return (
     <main className="min-h-screen bg-brand-deep">
       <Hero />
+      <Evento />
       <Countdown />
       <Quem />
       <Autoridade />
       <PorQue />
       <Bandeiras />
-      <Evento />
       <CtaFinal />
       <Footer />
     </main>
