@@ -57,7 +57,7 @@ export const Route = createFileRoute("/")({
 // 👇 Cole aqui a URL do seu Google Apps Script (Web App) depois de publicá-lo.
 const SHEETS_URL = "https://script.google.com/macros/s/AKfycbza1l6D86cp83vtFp6-cNLQ-R7curNXp0DlxeGvJNzkcQH9Bpf4IENR8Y_X2r1TlbzH3w/exec";
 
-const WHATSAPP_NUMBER = "5531997844960";
+const WHATSAPP_NUMBER = "5531985931115";
 
 type FormData = { nome: string; whatsapp: string; cidade: string };
 
@@ -737,7 +737,7 @@ function Footer() {
               @matheus.biancardinemg
             </a>
             <a
-              href="https://wa.me/5531985931115"
+              href=`https://wa.me/${WHATSAPP_NUMBER}`
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold ring-1 ring-white/20 transition hover:bg-white/20"
