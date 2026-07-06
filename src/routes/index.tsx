@@ -343,6 +343,7 @@ function Countdown() {
 
 // ---------------- Quem é Matheus ----------------
 
+// ---------------- Quem   Matheus ----------------
 function Quem() {
   return (
     <section className="relative overflow-hidden bg-brand-deep py-20 lg:py-28">
@@ -359,50 +360,40 @@ function Quem() {
             />
             <div className="absolute -bottom-5 -right-5 hidden rounded-2xl bg-brand-green p-4 text-brand-deep shadow-elegant sm:block">
               <p className="font-display text-3xl font-black leading-none">25/07</p>
-              <p className="text-[10px] font-bold uppercase tracking-widest">2026 · Lançamento</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest">2026 - Lançamento</p>
             </div>
           </div>
         </div>
         <div className="lg:col-span-7">
           <p className="text-sm font-black uppercase tracking-widest text-brand-green">Conheça</p>
           <h2 className="mt-2 font-display text-4xl font-black text-white sm:text-5xl">Matheus Biancardine</h2>
+          
+          {/* Seção: Conheça Matheus Biancardine */}
           <div className="mt-6 space-y-4 text-base leading-relaxed text-white/80 sm:text-[1.05rem]">
             <p>
-              Matheus Biancardine é gestor público, articulador político e uma das jovens lideranças em ascensão em
-              Minas Gerais. Sua trajetória é marcada pelo compromisso com a formação de novas lideranças, a
-              participação cidadã e a construção de políticas públicas capazes de gerar oportunidades e transformar
-              realidades.
+              Matheus Biancardine é uma jovem liderança mineira, fundador da Juventude do Partido Novo e Líder RenovaBR! Sua trajetória une a vocação para a vida pública à defesa dos valores cristãos, da vida e da família, traduzindo sua fé em ações pautadas pelo brio, pela ordem e pela retidão.
             </p>
             <p>
-              Durante o governo Romeu Zema, atuou à frente das políticas estaduais para a juventude, liderando
-              iniciativas que fortaleceram o protagonismo jovem e ampliaram o diálogo entre governo, sociedade civil
-              e lideranças de diferentes regiões do estado. Seu trabalho o consolidou como uma referência na defesa
-              de uma geração mais preparada para participar das decisões que impactam o presente e o futuro de Minas
-              Gerais.
+              Durante o governo Romeu Zema, atuou à frente das políticas estaduais para a juventude, liderando iniciativas voltadas ao fortalecimento do protagonismo jovem e à ampliação do diálogo entre governo, sociedade civil e lideranças de diferentes regiões de Minas Gerais. Seu trabalho o consolidou como uma referência na defesa de uma geração mais preparada para participar das decisões que impactam o presente e o futuro do estado.
             </p>
           </div>
 
           <details className="group mt-6 rounded-2xl bg-white/5 p-5 ring-1 ring-white/10 transition open:bg-white/[0.07]">
             <summary className="cursor-pointer list-none text-sm font-bold uppercase tracking-wider text-brand-green">
               Ler trajetória completa
-              <span className="ml-2 inline-block transition group-open:rotate-180">▾</span>
+              <span className="ml-2 inline-block transition group-open:rotate-180">▼</span>
             </summary>
+            
+            {/* Seção: Ler Trajetória Completa */}
             <div className="mt-4 space-y-3 text-sm leading-relaxed text-white/75">
               <p>
-                Atualmente, integra a equipe do governador Mateus Simões como assessor, contribuindo para a
-                articulação institucional, o relacionamento com lideranças e a construção de soluções voltadas ao
-                desenvolvimento do estado. Sua atuação próxima ao centro das decisões do governo lhe proporciona uma
-                visão ampla dos desafios e oportunidades que Minas enfrenta nos próximos anos.
+                Recentemente, integrou a equipe do vice-governador Mateus Simões como assessor, contribuindo diretamente para a articulação institucional e para a construção de soluções voltadas ao desenvolvimento de Minas Gerais. Essa atuação no centro das decisões do governo fortaleceu sua experiência na gestão pública e ampliou sua compreensão dos desafios enfrentados pelo estado.
               </p>
               <p>
-                Em reconhecimento à sua contribuição para o serviço público e para o fortalecimento da cidadania,
-                recebeu a <strong className="text-white">Medalha Juscelino Kubitschek</strong>, uma das mais
-                tradicionais e importantes honrarias concedidas pelo Governo de Minas Gerais.
+                Em reconhecimento à sua dedicação e contribuição para o fortalecimento da cidadania e do serviço público, foi agraciado com a <strong className="text-white">Medalha Juscelino Kubitschek</strong>, uma das mais tradicionais e importantes honrarias concedidas pelo Governo de Minas Gerais.
               </p>
               <p>
-                Defensor de uma gestão pública moderna, eficiente e orientada por resultados, Matheus acredita que a
-                política deve estar conectada às necessidades reais da população, promovendo liberdade,
-                desenvolvimento e oportunidades para as próximas gerações.
+                Defensor de uma gestão eficiente, moderna e livre de privilégios, Matheus entende a política não como uma carreira de gabinete, mas como uma vocação de servir! Movido por seus princípios, trabalha para que a retidão moral, a liberdade e a responsabilidade caminhem juntas, criando mais oportunidades para as próximas gerações de mineiros.
               </p>
             </div>
           </details>
@@ -737,7 +728,7 @@ function Footer() {
               @matheus.biancardinemg
             </a>
             <a
-              href=`https://wa.me/${WHATSAPP_NUMBER}`
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold ring-1 ring-white/20 transition hover:bg-white/20"
