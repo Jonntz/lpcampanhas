@@ -1,48 +1,58 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, type FormEvent } from "react";
 import {
-  Calendar,
-  MapPin,
   ArrowRight,
-  CheckCircle2,
-  Instagram,
-  Sparkles,
-  Users,
-  Shield,
-  TrendingUp,
-  GraduationCap,
   Briefcase,
-  Rocket,
-  Home,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  GraduationCap,
   Handshake,
-  Vote,
+  Home,
+  Instagram,
   Landmark,
+  MapPin,
   MessageCircle,
-  Clock
+  Rocket,
+  Shield,
+  Sparkles,
+  TrendingUp,
+  Users,
+  Vote,
 } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
 
-import speakingPhoto from "@/assets/speaking.jpeg";
-import camaraPhoto from "@/assets/camara.png";
-import zemaPhoto from "@/assets/zema.jpg";
-import retratoPhoto from "@/assets/retrato.png";
-import palcoPhoto from "@/assets/palco.jpg";
 import audienciaPhoto from "@/assets/audience.jpeg";
+import camaraPhoto from "@/assets/camara.png";
+import palcoPhoto from "@/assets/palco.jpg";
+import retratoPhoto from "@/assets/retrato.png";
+import speakingPhoto from "@/assets/speaking.jpeg";
+import zemaPhoto from "@/assets/zema.jpg";
+
+import bannerMobile from "@/assets/mobile.jpeg";
+import bannerPc from "@/assets/pc.jpeg";
 
 const EVENT_DATE = new Date("2026-07-25T19:00:00-03:00");
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Matheus Biancardine — Lançamento da pré-candidatura · 25/07/2026" },
+      {
+        title:
+          "Matheus Biancardine — Lançamento da pré-candidatura · 25/07/2026",
+      },
       {
         name: "description",
         content:
           "Minas precisa de uma nova geração de lideranças. Participe do lançamento oficial da pré-candidatura de Matheus Biancardine a Deputado Federal por MG.",
       },
-      { property: "og:title", content: "Matheus Biancardine — Uma nova geração para Minas Gerais" },
+      {
+        property: "og:title",
+        content: "Matheus Biancardine — Uma nova geração para Minas Gerais",
+      },
       {
         property: "og:description",
-        content: "Lançamento oficial da pré-candidatura. 25 de julho de 2026. Garanta sua vaga.",
+        content:
+          "Lançamento oficial da pré-candidatura. 25 de julho de 2026. Garanta sua vaga.",
       },
       { property: "og:image", content: retratoPhoto },
       { name: "twitter:card", content: "summary_large_image" },
@@ -55,14 +65,19 @@ export const Route = createFileRoute("/")({
 // ---------------- Form ----------------
 
 // 👇 Cole aqui a URL do seu Google Apps Script (Web App) depois de publicá-lo.
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbza1l6D86cp83vtFp6-cNLQ-R7curNXp0DlxeGvJNzkcQH9Bpf4IENR8Y_X2r1TlbzH3w/exec";
+const SHEETS_URL =
+  "https://script.google.com/macros/s/AKfycbza1l6D86cp83vtFp6-cNLQ-R7curNXp0DlxeGvJNzkcQH9Bpf4IENR8Y_X2r1TlbzH3w/exec";
 
 const WHATSAPP_NUMBER = "5531985931115";
 
 type FormData = { nome: string; whatsapp: string; cidade: string };
 
 function useInscricaoForm() {
-  const [data, setData] = useState<FormData>({ nome: "", whatsapp: "", cidade: "" });
+  const [data, setData] = useState<FormData>({
+    nome: "",
+    whatsapp: "",
+    cidade: "",
+  });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -85,7 +100,9 @@ function useInscricaoForm() {
           nome: data.nome,
           whatsapp: data.whatsapp,
           cidade: data.cidade,
-          data: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+          data: new Date().toLocaleString("pt-BR", {
+            timeZone: "America/Sao_Paulo",
+          }),
         }),
       });
     } catch {
@@ -95,9 +112,9 @@ function useInscricaoForm() {
     // 3. Abrir o WhatsApp com mensagem pré-preenchida
     const msg = encodeURIComponent(
       `🟢 *Nova inscrição — Lançamento Biancardine*\n\n` +
-      `👤 *Nome:* ${data.nome}\n` +
-      `📱 *WhatsApp:* ${data.whatsapp}\n` +
-      `📍 *Cidade:* ${data.cidade}`
+        `👤 *Nome:* ${data.nome}\n` +
+        `📱 *WhatsApp:* ${data.whatsapp}\n` +
+        `📍 *Cidade:* ${data.cidade}`,
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
 
@@ -112,16 +129,26 @@ function useInscricaoForm() {
   return { data, setData, submitted, loading, handleSubmit };
 }
 
-function InscricaoForm({ idPrefix = "f1", compact = false }: { idPrefix?: string; compact?: boolean }) {
-  const { data, setData, submitted, loading, handleSubmit } = useInscricaoForm();
+function InscricaoForm({
+  idPrefix = "f1",
+  compact = false,
+}: {
+  idPrefix?: string;
+  compact?: boolean;
+}) {
+  const { data, setData, submitted, loading, handleSubmit } =
+    useInscricaoForm();
 
   if (submitted) {
     return (
       <div className="rounded-2xl bg-brand-green/15 p-6 text-center ring-1 ring-brand-green/40">
         <CheckCircle2 className="mx-auto h-12 w-12 text-brand-green" />
-        <h3 className="mt-3 font-display text-xl font-black text-white">Inscrição confirmada!</h3>
+        <h3 className="mt-3 font-display text-xl font-black text-white">
+          Inscrição confirmada!
+        </h3>
         <p className="mt-1 text-sm text-white/80">
-          Em breve entraremos em contato pelo WhatsApp com todos os detalhes do lançamento.
+          Em breve entraremos em contato pelo WhatsApp com todos os detalhes do
+          lançamento.
         </p>
       </div>
     );
@@ -131,7 +158,10 @@ function InscricaoForm({ idPrefix = "f1", compact = false }: { idPrefix?: string
     "w-full rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green backdrop-blur transition";
 
   return (
-    <form onSubmit={handleSubmit} className={compact ? "space-y-2.5" : "space-y-3"}>
+    <form
+      onSubmit={handleSubmit}
+      className={compact ? "space-y-2.5" : "space-y-3"}
+    >
       <input
         required
         id={`${idPrefix}-nome`}
@@ -195,6 +225,63 @@ function Nav() {
   );
 }
 
+// ---------------- Banner Principal ----------------
+
+function BannerPrincipal() {
+  return (
+    <section className="relative w-full bg-brand-deep">
+      {/* Imagem Desktop (aparece a partir de telas médias) */}
+      <img
+        src={bannerPc}
+        alt="Lançamento Matheus Biancardine"
+        className="hidden md:block w-full h-auto object-cover"
+      />
+
+      {/* Imagem Mobile (aparece apenas em telas pequenas) */}
+      <img
+        src={bannerMobile}
+        alt="Lançamento Matheus Biancardine"
+        className="block md:hidden w-full h-auto object-cover"
+      />
+
+      {/* Container de Posicionamento Absoluto */}
+      {/* No mobile usa bottom-[6%] e no desktop usa md:bottom-[10%] (ajuste a porcentagem se precisar subir/descer) */}
+      <div className="absolute bottom-[6%] md:bottom-[28%] left-0 w-full z-20">
+        {/* Alinhamento inteligente:
+            - flex justify-center: Centraliza o botão no mobile
+            - md:justify-start: Alinha o botão à esquerda no desktop
+            - max-w-7xl mx-auto px-...: Garante que no PC ele fique alinhado com o texto das outras seções
+        */}
+        <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-0 flex justify-center md:justify-start">
+          <a
+            href="#inscricao"
+            className="group relative flex items-center justify-center gap-2 rounded-xl bg-brand-green px-8 py-4 text-base sm:text-lg font-black uppercase tracking-wide text-brand-deep shadow-green-glow transition-all hover:bg-brand-green-hover hover:text-white active:scale-[0.99] w-[90%] sm:w-auto min-w-[280px]"
+          >
+            Confirmar presença
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------- SAVE THE DATE ----------------
+
+function SaveTheDateBar() {
+  return (
+    <div className="sticky top-0 z-40 border-b border-primary/40 bg-background/90 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2 sm:gap-3">
+        <span className="h-2 w-2 shrink-0 rounded-full bg-primary animate-blink" />
+        <span className="font-display lg:text-xl tracking-[0.15em] text-primary animate-blink sm:text-xl sm:tracking-[0.32em]">
+          SAVE THE DATE · MINAS GERAIS
+        </span>
+        <span className="h-2 w-2 shrink-0 rounded-full bg-primary animate-blink" />
+      </div>
+    </div>
+  );
+}
+
 // ---------------- Hero (form na primeira dobra) ----------------
 
 function Hero() {
@@ -213,9 +300,18 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-brand-deep via-brand-deep/30 to-transparent" />
       </div>
       <div className="absolute inset-0 bg-grid-soft opacity-30" aria-hidden />
-      <div className="absolute left-0 top-0 h-1.5 w-full bg-brand-green" aria-hidden />
-      <div className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-teal/40 blur-3xl" aria-hidden />
-      <div className="absolute -right-32 bottom-0 h-[28rem] w-[28rem] rounded-full bg-brand-green/15 blur-3xl" aria-hidden />
+      <div
+        className="absolute left-0 top-0 h-1.5 w-full bg-brand-green"
+        aria-hidden
+      />
+      <div
+        className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-teal/40 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="absolute -right-32 bottom-0 h-[28rem] w-[28rem] rounded-full bg-brand-green/15 blur-3xl"
+        aria-hidden
+      />
 
       <Nav />
 
@@ -229,7 +325,9 @@ function Hero() {
           <h1 className="mt-5 font-display text-4xl font-black uppercase leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
             Minas precisa de uma{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 text-brand-green">nova geração</span>
+              <span className="relative z-10 text-brand-green">
+                nova geração
+              </span>
               <span
                 className="absolute -bottom-1 left-0 h-1.5 w-full rounded-full bg-brand-green/70"
                 aria-hidden
@@ -239,8 +337,11 @@ function Hero() {
           </h1>
           <p className="mt-5 max-w-2xl text-base text-white/85 sm:text-lg">
             Participe do lançamento oficial da pré-campanha de{" "}
-            <strong className="font-semibold text-white">Matheus Biancardine</strong> e faça parte de um movimento por
-            mais oportunidades, liberdade e futuro para o povo mineiro.
+            <strong className="font-semibold text-white">
+              Matheus Biancardine
+            </strong>{" "}
+            e faça parte de um movimento por mais oportunidades, liberdade e
+            futuro para o povo mineiro.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3 text-white/90">
@@ -258,10 +359,14 @@ function Hero() {
         {/* Form */}
         <div id="inscricao" className="lg:col-span-5">
           <div className="relative">
-            <div className="absolute -inset-1 rounded-3xl bg-brand-green opacity-30 blur-xl" aria-hidden />
+            <div
+              className="absolute -inset-1 rounded-3xl bg-brand-green opacity-30 blur-xl"
+              aria-hidden
+            />
             <div className="relative rounded-3xl bg-brand-deep/85 p-6 ring-1 ring-white/15 shadow-elegant backdrop-blur-md sm:p-7">
               <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-brand-green/15 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-brand-green">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-green" /> Vagas limitadas
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-green" />{" "}
+                Vagas limitadas
               </div>
               <h2 className="font-display text-2xl font-black text-white sm:text-[1.7rem]">
                 Garanta sua vaga no lançamento
@@ -347,11 +452,17 @@ function Countdown() {
 function Quem() {
   return (
     <section className="relative overflow-hidden bg-brand-deep py-20 lg:py-28">
-      <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-brand-green/10 blur-3xl" aria-hidden />
+      <div
+        className="absolute right-0 top-0 h-64 w-64 rounded-full bg-brand-green/10 blur-3xl"
+        aria-hidden
+      />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-5">
           <div className="relative">
-            <div className="absolute -inset-3 rounded-3xl bg-brand-green opacity-20 blur-2xl" aria-hidden />
+            <div
+              className="absolute -inset-3 rounded-3xl bg-brand-green opacity-20 blur-2xl"
+              aria-hidden
+            />
             <img
               src={retratoPhoto}
               alt="Matheus Biancardine"
@@ -359,41 +470,78 @@ function Quem() {
               loading="lazy"
             />
             <div className="absolute -bottom-5 -right-5 hidden rounded-2xl bg-brand-green p-4 text-brand-deep shadow-elegant sm:block">
-              <p className="font-display text-3xl font-black leading-none">25/07</p>
-              <p className="text-[10px] font-bold uppercase tracking-widest">2026 - Lançamento</p>
+              <p className="font-display text-3xl font-black leading-none">
+                25/07
+              </p>
+              <p className="text-[10px] font-bold uppercase tracking-widest">
+                2026 - Lançamento
+              </p>
             </div>
           </div>
         </div>
         <div className="lg:col-span-7">
-          <p className="text-sm font-black uppercase tracking-widest text-brand-green">Conheça</p>
-          <h2 className="mt-2 font-display text-4xl font-black text-white sm:text-5xl">Matheus Biancardine</h2>
-          
+          <p className="text-sm font-black uppercase tracking-widest text-brand-green">
+            Conheça
+          </p>
+          <h2 className="mt-2 font-display text-4xl font-black text-white sm:text-5xl">
+            Matheus Biancardine
+          </h2>
+
           {/* Seção: Conheça Matheus Biancardine */}
           <div className="mt-6 space-y-4 text-base leading-relaxed text-white/80 sm:text-[1.05rem]">
             <p>
-              Matheus Biancardine é uma jovem liderança mineira, fundador da Juventude do Partido Novo e Líder RenovaBR! Sua trajetória une a vocação para a vida pública à defesa dos valores cristãos, da vida e da família, traduzindo sua fé em ações pautadas pelo brio, pela ordem e pela retidão.
+              Matheus Biancardine é uma jovem liderança mineira, fundador da
+              Juventude do Partido Novo e Líder RenovaBR! Sua trajetória une a
+              vocação para a vida pública à defesa dos valores cristãos, da vida
+              e da família, traduzindo sua fé em ações pautadas pelo brio, pela
+              ordem e pela retidão.
             </p>
             <p>
-              Durante o governo Romeu Zema, atuou à frente das políticas estaduais para a juventude, liderando iniciativas voltadas ao fortalecimento do protagonismo jovem e à ampliação do diálogo entre governo, sociedade civil e lideranças de diferentes regiões de Minas Gerais. Seu trabalho o consolidou como uma referência na defesa de uma geração mais preparada para participar das decisões que impactam o presente e o futuro do estado.
+              Durante o governo Romeu Zema, atuou à frente das políticas
+              estaduais para a juventude, liderando iniciativas voltadas ao
+              fortalecimento do protagonismo jovem e à ampliação do diálogo
+              entre governo, sociedade civil e lideranças de diferentes regiões
+              de Minas Gerais. Seu trabalho o consolidou como uma referência na
+              defesa de uma geração mais preparada para participar das decisões
+              que impactam o presente e o futuro do estado.
             </p>
           </div>
 
           <details className="group mt-6 rounded-2xl bg-white/5 p-5 ring-1 ring-white/10 transition open:bg-white/[0.07]">
             <summary className="cursor-pointer list-none text-sm font-bold uppercase tracking-wider text-brand-green">
               Ler trajetória completa
-              <span className="ml-2 inline-block transition group-open:rotate-180">▼</span>
+              <span className="ml-2 inline-block transition group-open:rotate-180">
+                ▼
+              </span>
             </summary>
-            
+
             {/* Seção: Ler Trajetória Completa */}
             <div className="mt-4 space-y-3 text-sm leading-relaxed text-white/75">
               <p>
-                Recentemente, integrou a equipe do vice-governador Mateus Simões como assessor, contribuindo diretamente para a articulação institucional e para a construção de soluções voltadas ao desenvolvimento de Minas Gerais. Essa atuação no centro das decisões do governo fortaleceu sua experiência na gestão pública e ampliou sua compreensão dos desafios enfrentados pelo estado.
+                Recentemente, integrou a equipe do vice-governador Mateus Simões
+                como assessor, contribuindo diretamente para a articulação
+                institucional e para a construção de soluções voltadas ao
+                desenvolvimento de Minas Gerais. Essa atuação no centro das
+                decisões do governo fortaleceu sua experiência na gestão pública
+                e ampliou sua compreensão dos desafios enfrentados pelo estado.
               </p>
               <p>
-                Em reconhecimento à sua dedicação e contribuição para o fortalecimento da cidadania e do serviço público, foi agraciado com a <strong className="text-white">Medalha Juscelino Kubitschek</strong>, uma das mais tradicionais e importantes honrarias concedidas pelo Governo de Minas Gerais.
+                Em reconhecimento à sua dedicação e contribuição para o
+                fortalecimento da cidadania e do serviço público, foi agraciado
+                com a{" "}
+                <strong className="text-white">
+                  Medalha Juscelino Kubitschek
+                </strong>
+                , uma das mais tradicionais e importantes honrarias concedidas
+                pelo Governo de Minas Gerais.
               </p>
               <p>
-                Defensor de uma gestão eficiente, moderna e livre de privilégios, Matheus entende a política não como uma carreira de gabinete, mas como uma vocação de servir! Movido por seus princípios, trabalha para que a retidão moral, a liberdade e a responsabilidade caminhem juntas, criando mais oportunidades para as próximas gerações de mineiros.
+                Defensor de uma gestão eficiente, moderna e livre de
+                privilégios, Matheus entende a política não como uma carreira de
+                gabinete, mas como uma vocação de servir! Movido por seus
+                princípios, trabalha para que a retidão moral, a liberdade e a
+                responsabilidade caminhem juntas, criando mais oportunidades
+                para as próximas gerações de mineiros.
               </p>
             </div>
           </details>
@@ -419,13 +567,22 @@ function Autoridade() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const photos = [
-    { src: zemaPhoto, label: "Coragem e fé! Trabalhando pela juventude mineira, com a liderança de Romeu Zema e Mateus Simões, mobilizando, atuando no Governo, e liderando movimentos jovens!", tag: "Governo de Minas" },
-    { src: camaraPhoto, label: "Fundador da Juventude do Partido Novo e ex presidente nacional!", tag: "Vida pública", objectPosition: "object-top" },
+    {
+      src: zemaPhoto,
+      label:
+        "Coragem e fé! Trabalhando pela juventude mineira, com a liderança de Romeu Zema e Mateus Simões, mobilizando, atuando no Governo, e liderando movimentos jovens!",
+      tag: "Governo de Minas",
+    },
+    {
+      src: camaraPhoto,
+      label: "Fundador da Juventude do Partido Novo e ex presidente nacional!",
+      tag: "Vida pública",
+      objectPosition: "object-top",
+    },
     { src: speakingPhoto, label: "Líder Renova BR 2026!", tag: "Liderança" },
     {
       src: audienciaPhoto,
-      label:
-        "Gestor de políticas públicas para juventude mineira",
+      label: "Gestor de políticas públicas para juventude mineira",
       tag: "Audiência Pública",
     },
   ];
@@ -433,12 +590,15 @@ function Autoridade() {
     <section className="relative overflow-hidden bg-brand-teal py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-widest text-brand-green">Autoridade & Trajetória</p>
+          <p className="text-sm font-black uppercase tracking-widest text-brand-green">
+            Autoridade & Trajetória
+          </p>
           <h2 className="mt-2 font-display text-4xl font-black text-white sm:text-5xl">
             Experiência reconhecida por quem faz Minas acontecer
           </h2>
           <p className="mt-4 text-white/80">
-            Atuação ao lado do Governador Romeu Zema, em eventos oficiais, palestras e mobilizações pelo estado.
+            Atuação ao lado do Governador Romeu Zema, em eventos oficiais,
+            palestras e mobilizações pelo estado.
           </p>
         </div>
 
@@ -457,9 +617,12 @@ function Autoridade() {
                 </span>
                 <p
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className={`mt-2 font-display text-lg font-bold text-white sm:text-xl cursor-pointer transition-all duration-300 ${isExpanded ? "" : "line-clamp-2"
-                    }`}
-                  title={isExpanded ? "Clique para esconder" : "Clique para ler mais"}
+                  className={`mt-2 font-display text-lg font-bold text-white sm:text-xl cursor-pointer transition-all duration-300 ${
+                    isExpanded ? "" : "line-clamp-2"
+                  }`}
+                  title={
+                    isExpanded ? "Clique para esconder" : "Clique para ler mais"
+                  }
                 >
                   {photos[0].label}
                 </p>
@@ -481,7 +644,9 @@ function Autoridade() {
                 <span className="inline-block rounded-full bg-brand-green px-3 py-0.5 text-[10px] font-black uppercase tracking-wider text-brand-deep">
                   {p.tag}
                 </span>
-                <p className="mt-1.5 font-display text-base font-bold text-white">{p.label}</p>
+                <p className="mt-1.5 font-display text-base font-bold text-white">
+                  {p.label}
+                </p>
               </div>
             </div>
           ))}
@@ -523,10 +688,15 @@ const motivos = [
 function PorQue() {
   return (
     <section className="relative overflow-hidden bg-brand-deep py-20 lg:py-28">
-      <div className="absolute -right-32 top-10 h-80 w-80 rounded-full bg-brand-green/10 blur-3xl" aria-hidden />
+      <div
+        className="absolute -right-32 top-10 h-80 w-80 rounded-full bg-brand-green/10 blur-3xl"
+        aria-hidden
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-widest text-brand-green">Por que participar?</p>
+          <p className="text-sm font-black uppercase tracking-widest text-brand-green">
+            Por que participar?
+          </p>
           <h2 className="mt-2 font-display text-4xl font-black text-white sm:text-5xl">
             Mais que um evento. O início de um movimento.
           </h2>
@@ -540,8 +710,12 @@ function PorQue() {
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-green text-brand-deep shadow-green-glow">
                 <Icon className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-display text-lg font-bold text-white">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/75">{text}</p>
+              <h3 className="mt-4 font-display text-lg font-bold text-white">
+                {title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/75">
+                {text}
+              </p>
             </div>
           ))}
         </div>
@@ -553,12 +727,36 @@ function PorQue() {
 // ---------------- Bandeiras ----------------
 
 const bandeiras = [
-  { icon: Briefcase, title: "Primeiro emprego", text: "Caminhos reais para o jovem entrar no mercado de trabalho." },
-  { icon: Rocket, title: "Empreendedorismo jovem", text: "Apoio a quem quer abrir e fazer crescer seu próprio negócio." },
-  { icon: GraduationCap, title: "Formação técnica", text: "Educação que prepara para as profissões do presente e do futuro." },
-  { icon: Home, title: "Habitação jovem", text: "Casa própria como ponto de partida para a vida adulta." },
-  { icon: Shield, title: "Segurança e liberdade", text: "Apoio às forças de segurança e defesa das liberdades individuais." },
-  { icon: TrendingUp, title: "Menos impostos, mais Minas", text: "Liberdade econômica para quem produz, emprega e empreende." },
+  {
+    icon: Briefcase,
+    title: "Primeiro emprego",
+    text: "Caminhos reais para o jovem entrar no mercado de trabalho.",
+  },
+  {
+    icon: Rocket,
+    title: "Empreendedorismo jovem",
+    text: "Apoio a quem quer abrir e fazer crescer seu próprio negócio.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Formação técnica",
+    text: "Educação que prepara para as profissões do presente e do futuro.",
+  },
+  {
+    icon: Home,
+    title: "Habitação jovem",
+    text: "Casa própria como ponto de partida para a vida adulta.",
+  },
+  {
+    icon: Shield,
+    title: "Segurança e liberdade",
+    text: "Apoio às forças de segurança e defesa das liberdades individuais.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Menos impostos, mais Minas",
+    text: "Liberdade econômica para quem produz, emprega e empreende.",
+  },
 ];
 
 function Bandeiras() {
@@ -566,12 +764,15 @@ function Bandeiras() {
     <section className="relative overflow-hidden bg-brand-teal py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-widest text-brand-green">Principais bandeiras</p>
+          <p className="text-sm font-black uppercase tracking-widest text-brand-green">
+            Principais bandeiras
+          </p>
           <h2 className="mt-2 font-display text-4xl font-black text-white sm:text-5xl">
             Uma pauta feita para a juventude mineira
           </h2>
           <p className="mt-4 text-white/80">
-            Oportunidades reais para quem está começando, gerando renda e construindo o futuro de Minas.
+            Oportunidades reais para quem está começando, gerando renda e
+            construindo o futuro de Minas.
           </p>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -580,10 +781,17 @@ function Bandeiras() {
               key={title}
               className="group relative overflow-hidden rounded-2xl bg-brand-deep/70 p-7 ring-1 ring-white/10 transition hover:-translate-y-1 hover:ring-brand-green/40"
             >
-              <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-brand-green/10 transition group-hover:scale-150" aria-hidden />
+              <div
+                className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-brand-green/10 transition group-hover:scale-150"
+                aria-hidden
+              />
               <Icon className="relative h-9 w-9 text-brand-green" />
-              <h3 className="relative mt-4 font-display text-lg font-bold text-white">{title}</h3>
-              <p className="relative mt-2 text-sm leading-relaxed text-white/75">{text}</p>
+              <h3 className="relative mt-4 font-display text-lg font-bold text-white">
+                {title}
+              </h3>
+              <p className="relative mt-2 text-sm leading-relaxed text-white/75">
+                {text}
+              </p>
             </div>
           ))}
         </div>
@@ -596,9 +804,12 @@ function Bandeiras() {
 
 function Evento() {
   return (
-    <section className="relative overflow-hidden bg-brand-deep py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-brand-deep pb-20 lg:pb-28">
       <div className="absolute inset-0 bg-grid-soft opacity-20" aria-hidden />
-      <div className="absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-brand-green/15 blur-3xl" aria-hidden />
+      <div
+        className="absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-brand-green/15 blur-3xl"
+        aria-hidden
+      />
 
       <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-brand-green/40 bg-brand-green/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-brand-green backdrop-blur">
@@ -617,25 +828,38 @@ function Evento() {
           {/* Card Data */}
           <div className="flex flex-col items-center justify-center rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10 transition-colors hover:bg-white/10">
             <Calendar className="mb-3 h-7 w-7 text-brand-green" />
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Data</p>
-            <p className="mt-1 font-display text-lg font-black text-white">25 de Julho, 2026</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">
+              Data
+            </p>
+            <p className="mt-1 font-display text-lg font-black text-white">
+              25 de Julho, 2026
+            </p>
           </div>
 
           {/* Card Horário */}
           <div className="flex flex-col items-center justify-center rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10 transition-colors hover:bg-white/10">
             <Clock className="mb-3 h-7 w-7 text-brand-green" />
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Horário</p>
-            <p className="mt-1 font-display text-lg font-black text-white">15h30</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">
+              Horário
+            </p>
+            <p className="mt-1 font-display text-lg font-black text-white">
+              15h30
+            </p>
             <p className="text-xs text-white/60">Início</p>
           </div>
 
           {/* Card Local e Endereço */}
           <div className="flex flex-col items-center justify-center rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10 transition-colors hover:bg-white/10 sm:col-span-2 lg:col-span-2">
             <MapPin className="mb-3 h-7 w-7 text-brand-green" />
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Local</p>
-            <p className="mt-1 font-display text-lg font-black text-white">(Antigo) Cine Odeon</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">
+              Local
+            </p>
+            <p className="mt-1 font-display text-lg font-black text-white">
+              (Antigo) Cine Odeon
+            </p>
             <p className="mt-2 text-sm leading-relaxed text-white/70">
-              Av. do Contorno, 1328 - Floresta<br />
+              Av. do Contorno, 1328 - Floresta
+              <br />
               Belo Horizonte - MG, 38082-049
             </p>
           </div>
@@ -657,19 +881,25 @@ function Evento() {
 
 function CtaFinal() {
   return (
-    <section id="cta-final" className="relative overflow-hidden bg-brand-pattern py-20 lg:py-28">
+    <section
+      id="cta-final"
+      className="relative overflow-hidden bg-brand-pattern py-20 lg:py-28"
+    >
       <div className="absolute inset-0 bg-grid-soft opacity-30" aria-hidden />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
         <div>
-          <p className="text-sm font-black uppercase tracking-widest text-brand-green">O momento é agora</p>
+          <p className="text-sm font-black uppercase tracking-widest text-brand-green">
+            O momento é agora
+          </p>
           <h2 className="mt-3 font-display text-4xl font-black uppercase leading-tight text-white sm:text-5xl lg:text-6xl">
             Minas precisa de uma{" "}
             <span className="text-brand-green">nova geração</span> de líderes.
           </h2>
           <div className="mt-6 space-y-4 text-lg text-white/80">
             <p>
-              O futuro não será construído por quem apenas reclama. Será construído por quem tem coragem de
-              enfrentá-lo — e vontade de fazer o NOVO acontecer.
+              O futuro não será construído por quem apenas reclama. Será
+              construído por quem tem coragem de enfrentá-lo — e vontade de
+              fazer o NOVO acontecer.
             </p>
             <p className="font-semibold text-white">
               Participe do lançamento e faça parte desta construção.
@@ -677,18 +907,27 @@ function CtaFinal() {
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-white">
-              <CheckCircle2 className="h-5 w-5 text-brand-green" /> Vagas limitadas
+              <CheckCircle2 className="h-5 w-5 text-brand-green" /> Vagas
+              limitadas
             </div>
             <div className="flex items-center gap-2 text-sm font-semibold text-white">
-              <CheckCircle2 className="h-5 w-5 text-brand-green" /> Convite oficial via WhatsApp
+              <CheckCircle2 className="h-5 w-5 text-brand-green" /> Convite
+              oficial via WhatsApp
             </div>
           </div>
         </div>
         <div className="relative">
-          <div className="absolute -inset-2 rounded-3xl bg-brand-green opacity-25 blur-xl" aria-hidden />
+          <div
+            className="absolute -inset-2 rounded-3xl bg-brand-green opacity-25 blur-xl"
+            aria-hidden
+          />
           <div className="relative rounded-3xl bg-brand-deep/85 p-8 ring-1 ring-white/15 shadow-elegant backdrop-blur-md sm:p-10">
-            <h3 className="font-display text-2xl font-black text-white sm:text-3xl">Quero fazer parte</h3>
-            <p className="mt-1 text-sm text-white/70">Preencha e receba o convite oficial.</p>
+            <h3 className="font-display text-2xl font-black text-white sm:text-3xl">
+              Quero fazer parte
+            </h3>
+            <p className="mt-1 text-sm text-white/70">
+              Preencha e receba o convite oficial.
+            </p>
             <div className="mt-6">
               <InscricaoForm idPrefix="final" />
             </div>
@@ -704,13 +943,20 @@ function CtaFinal() {
 function Footer() {
   return (
     <footer className="relative overflow-hidden bg-brand-deep pb-8 pt-12 text-white">
-      <div className="absolute inset-x-0 top-0 h-1 bg-brand-green" aria-hidden />
+      <div
+        className="absolute inset-x-0 top-0 h-1 bg-brand-green"
+        aria-hidden
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Top Section */}
         <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:justify-between lg:text-left">
           <div>
-            <p className="font-display text-xl font-bold text-white">Matheus Biancardine Mota</p>
-            <p className="mt-1 text-sm text-white/60">Pré-candidato a Deputado Federal · MG</p>
+            <p className="font-display text-xl font-bold text-white">
+              Matheus Biancardine Mota
+            </p>
+            <p className="mt-1 text-sm text-white/60">
+              Pré-candidato a Deputado Federal · MG
+            </p>
           </div>
 
           <p className="max-w-md font-display text-base italic text-white/85">
@@ -746,14 +992,34 @@ function Footer() {
           <div className="flex items-start gap-4">
             <Landmark className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <p className="leading-relaxed">
-              <strong className="font-bold text-white uppercase">Informação Político-Institucional</strong> · Conteúdo informativo de pré-campanha eleitoral de <strong className="font-bold text-white">Matheus Biancardine Mota</strong>, pré-candidato a Deputado Federal pelo estado de Minas Gerais, em estrita conformidade com o <strong className="font-bold text-white">Artigo 36-A da Lei nº 9.504/1997</strong>. Este material não configura propaganda eleitoral antecipada, sendo vedado qualquer pedido explícito de voto.
+              <strong className="font-bold text-white uppercase">
+                Informação Político-Institucional
+              </strong>{" "}
+              · Conteúdo informativo de pré-campanha eleitoral de{" "}
+              <strong className="font-bold text-white">
+                Matheus Biancardine Mota
+              </strong>
+              , pré-candidato a Deputado Federal pelo estado de Minas Gerais, em
+              estrita conformidade com o{" "}
+              <strong className="font-bold text-white">
+                Artigo 36-A da Lei nº 9.504/1997
+              </strong>
+              . Este material não configura propaganda eleitoral antecipada,
+              sendo vedado qualquer pedido explícito de voto.
             </p>
           </div>
 
           <div className="flex items-start gap-4">
             <Shield className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <p className="leading-relaxed">
-              <strong className="font-bold text-white uppercase">Privacidade e Dados (LGPD)</strong> · Ao fornecer seu nome e contato, você autoriza o recebimento de informações exclusivas sobre o evento de lançamento, prestação de contas, ideias e agendas do pré-candidato. Seus dados estão protegidos e não serão compartilhados com terceiros. Conteúdo produzido sob responsabilidade do titular.
+              <strong className="font-bold text-white uppercase">
+                Privacidade e Dados (LGPD)
+              </strong>{" "}
+              · Ao fornecer seu nome e contato, você autoriza o recebimento de
+              informações exclusivas sobre o evento de lançamento, prestação de
+              contas, ideias e agendas do pré-candidato. Seus dados estão
+              protegidos e não serão compartilhados com terceiros. Conteúdo
+              produzido sob responsabilidade do titular.
             </p>
           </div>
         </div>
@@ -770,12 +1036,12 @@ function Footer() {
 function LandingPage() {
   return (
     <main className="min-h-screen bg-brand-deep">
+      <SaveTheDateBar />
+      <BannerPrincipal />
       <Hero />
       <Evento />
       <Countdown />
       <Quem />
-      <Autoridade />
-      <PorQue />
       <Bandeiras />
       <CtaFinal />
       <Footer />

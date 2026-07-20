@@ -1,24 +1,26 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  Outlet,
+  HeadContent,
   Link,
+  Outlet,
+  Scripts,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles/styles.css?url";
 import favicon from "../assets/favicon.ico?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import appCss from "../styles/styles.css?url";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">
+          Page not found
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -49,7 +51,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Something went wrong on our end. You can try refreshing or head back
+          home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -73,37 +76,66 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Landing page for Matheus Biancardine's federal deputy pre-candidacy in Minas Gerais, focused on event registration." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Landing page for Matheus Biancardine's federal deputy pre-candidacy in Minas Gerais, focused on event registration." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Landing page for Matheus Biancardine's federal deputy pre-candidacy in Minas Gerais, focused on event registration." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/921fed3d-a72e-4440-a4c4-c4902eb10f1a/id-preview-ab22fe74--6a07aee3-413d-4b04-984e-97d778c33c08.lovable.app-1782246550778.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/921fed3d-a72e-4440-a4c4-c4902eb10f1a/id-preview-ab22fe74--6a07aee3-413d-4b04-984e-97d778c33c08.lovable.app-1782246550778.png" },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" },
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: favicon, type: "image/x-icon" },
-    ],
-  }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
-});
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
+  {
+    head: () => ({
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: "Lovable App" },
+        {
+          name: "description",
+          content:
+            "Landing page for Matheus Biancardine's federal deputy pre-candidacy in Minas Gerais, focused on event registration.",
+        },
+        { name: "author", content: "Lovable" },
+        { property: "og:title", content: "Lovable App" },
+        {
+          property: "og:description",
+          content:
+            "Landing page for Matheus Biancardine's federal deputy pre-candidacy in Minas Gerais, focused on event registration.",
+        },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary" },
+        { name: "twitter:site", content: "@Lovable" },
+        { name: "twitter:title", content: "Lovable App" },
+        {
+          name: "twitter:description",
+          content:
+            "Landing page for Matheus Biancardine's federal deputy pre-candidacy in Minas Gerais, focused on event registration.",
+        },
+        {
+          property: "og:image",
+          content:
+            "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/921fed3d-a72e-4440-a4c4-c4902eb10f1a/id-preview-ab22fe74--6a07aee3-413d-4b04-984e-97d778c33c08.lovable.app-1782246550778.png",
+        },
+        {
+          name: "twitter:image",
+          content:
+            "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/921fed3d-a72e-4440-a4c4-c4902eb10f1a/id-preview-ab22fe74--6a07aee3-413d-4b04-984e-97d778c33c08.lovable.app-1782246550778.png",
+        },
+      ],
+      links: [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossOrigin: "anonymous",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap",
+        },
+        { rel: "stylesheet", href: appCss },
+        { rel: "icon", href: favicon, type: "image/x-icon" },
+      ],
+    }),
+    shellComponent: RootShell,
+    component: RootComponent,
+    notFoundComponent: NotFoundComponent,
+    errorComponent: ErrorComponent,
+  },
+);
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
@@ -111,7 +143,10 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TH6952LZ4N" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-TH6952LZ4N"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -122,9 +157,41 @@ function RootShell({ children }: { children: ReactNode }) {
             `,
           }}
         />
+
+        {/* Meta Pixel Code */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `!function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1059089453243567');
+            fbq('track', 'PageView');`,
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1059089453243567&ev=PageView&noscript=1"
+          />
+        </noscript>
+        {/* End Meta Pixel Code */}
       </head>
       <body>
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M498JLMC" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-M498JLMC"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         {children}
         <Scripts />
       </body>
