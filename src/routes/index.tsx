@@ -28,8 +28,8 @@ import retratoPhoto from "@/assets/retrato.png";
 import speakingPhoto from "@/assets/speaking.jpeg";
 import zemaPhoto from "@/assets/zema.jpg";
 
-import bannerMobile from "@/assets/mobile.jpeg";
-import bannerPc from "@/assets/pc.jpeg";
+import bannerMobile from "@/assets/mobile.webp";
+import bannerPc from "@/assets/pc.webp";
 
 const EVENT_DATE = new Date("2026-07-25T19:00:00-03:00");
 
@@ -185,7 +185,6 @@ function InscricaoForm({
         disabled={loading}
       />
       <input
-        required
         id={`${idPrefix}-cidade`}
         type="text"
         placeholder="Cidade"
@@ -246,7 +245,7 @@ function BannerPrincipal() {
 
       {/* Container de Posicionamento Absoluto */}
       {/* No mobile usa bottom-[6%] e no desktop usa md:bottom-[10%] (ajuste a porcentagem se precisar subir/descer) */}
-      <div className="absolute bottom-[6%] md:bottom-[28%] left-0 w-full z-20">
+      <div className="absolute bottom-[11%] md:bottom-[28%] left-0 w-full z-20">
         {/* Alinhamento inteligente:
             - flex justify-center: Centraliza o botão no mobile
             - md:justify-start: Alinha o botão à esquerda no desktop
@@ -255,7 +254,7 @@ function BannerPrincipal() {
         <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-0 flex justify-center md:justify-start">
           <a
             href="#inscricao"
-            className="group relative flex items-center justify-center gap-2 rounded-xl bg-brand-green px-8 py-4 text-base sm:text-lg font-black uppercase tracking-wide text-brand-deep shadow-green-glow transition-all hover:bg-brand-green-hover hover:text-white active:scale-[0.99] w-[90%] sm:w-auto min-w-[280px]"
+            className="group relative flex items-center justify-center gap-2 rounded-xl bg-brand-green px-8 py-1 text-base sm:text-lg font-black uppercase tracking-wide text-brand-deep shadow-green-glow transition-all hover:bg-brand-green-hover hover:text-white active:scale-[0.99] w-[90%] sm:w-auto min-w-[280px] md:hidden"
           >
             Confirmar presença
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -336,12 +335,11 @@ function Hero() {
             de lideranças.
           </h1>
           <p className="mt-5 max-w-2xl text-base text-white/85 sm:text-lg">
-            Participe do lançamento oficial da pré-campanha de{" "}
-            <strong className="font-semibold text-white">
-              Matheus Biancardine
-            </strong>{" "}
-            e faça parte de um movimento por mais oportunidades, liberdade e
-            futuro para o povo mineiro.
+            Uma pré-candidatura a Deputado Federal que une Minas Gerais às
+            principais vozes do país No dia 25 de julho, em Belo Horizonte,
+            vamos dar o primeiro passo de um projeto que vai levar a voz dos
+            mineiros para Brasília. Garanta sua vaga e esteja entre os
+            primeiros.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3 text-white/90">
@@ -843,7 +841,7 @@ function Evento() {
               Horário
             </p>
             <p className="mt-1 font-display text-lg font-black text-white">
-              15h30
+              15:00
             </p>
             <p className="text-xs text-white/60">Início</p>
           </div>
@@ -1036,7 +1034,6 @@ function Footer() {
 function LandingPage() {
   return (
     <main className="min-h-screen bg-brand-deep">
-      <SaveTheDateBar />
       <BannerPrincipal />
       <Hero />
       <Evento />
