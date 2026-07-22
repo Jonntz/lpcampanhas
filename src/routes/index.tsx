@@ -841,7 +841,7 @@ function Evento() {
               Horário
             </p>
             <p className="mt-1 font-display text-lg font-black text-white">
-              15:00
+              14:00
             </p>
             <p className="text-xs text-white/60">Início</p>
           </div>
