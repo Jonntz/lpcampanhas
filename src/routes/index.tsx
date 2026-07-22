@@ -68,7 +68,7 @@ export const Route = createFileRoute("/")({
 const SHEETS_URL =
   "https://script.google.com/macros/s/AKfycbza1l6D86cp83vtFp6-cNLQ-R7curNXp0DlxeGvJNzkcQH9Bpf4IENR8Y_X2r1TlbzH3w/exec";
 
-const WHATSAPP_NUMBER = "5531985931115";
+const WHATSAPP_NUMBER = "5531996965298";
 
 type FormData = { nome: string; whatsapp: string; cidade: string };
 
